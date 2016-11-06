@@ -24,6 +24,58 @@ function connection(callback) {
     });
 }
 
+
+function insertUser(user, callback) {
+
+    connection(function (err, db) {
+        if (!err) {
+
+            var collection = db.collection('users');
+
+            if (!collection) {
+
+                db.createCollection('users', function (err, collection) {
+
+                    if (err) {
+                        console.error(err);
+                        callback(err);
+                    } else {
+
+                        collection.insert([user], function (err, result) {
+                            if (err) {
+                                console.error(err);
+                                callback(err);
+                            } else {
+                                console.log(result);
+                            }
+                            callback(null, result);
+                            db.close();
+                        });
+                    }
+                });
+            } else {
+
+                collection.insert([user], function (err, result) {
+                    if (err) {
+                        console.error(err);
+                        callback(err);
+                    } else {
+                        console.log(result);
+                    }
+                    callback(null, result);
+                    db.close();
+                });
+            }
+
+        } else {
+
+            callback(err);
+        }
+    });
+
+}
+
 module.exports = {
-    connection: connection
+    connection: connection,
+    insertUser: insertUser
 };

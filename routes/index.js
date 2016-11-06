@@ -1,33 +1,27 @@
 var express = require('express');
 var router = express.Router();
-var MongoDB = require('./../controller/MongoController');
+var MongoController = require('./../controller/MongoController');
+
+
+var User = require('./../model/User');
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
 
-    MongoDB.connection(function (err, db) {
 
-        if (err) {
+    var tmp = {
+        name: 'jihoon',
+        age: 21,
+        card: 'KB'
+    };
 
-            res.send({result: 'connection error : ' + err});
+    var user = new User(tmp).create();
 
-        } else {
+    MongoController.insertUser(user, function (err, result) {
 
-            db.createCollection('test', function(err, collection) {
-
-                if (err) {
-
-                    return res.send({result: 'create collection error : ' + err});
-
-                }
-
-                res.render('index', {title: 'Express'});
-
-           });
-
-        }
+        res.send({result: err ? err : result});
 
     });
-
 
 });
 
