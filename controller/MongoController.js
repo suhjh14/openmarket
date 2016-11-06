@@ -25,6 +25,8 @@ function connection(callback) {
 }
 
 
+//todo move to UserController
+
 function insertUser(user, callback) {
 
     console.log('user : ', user);
@@ -39,11 +41,13 @@ function insertUser(user, callback) {
                 db.createCollection('users', function (err, collection) {
 
                     if (err) {
+                        db.close();
                         console.error(err);
                         callback(err);
                     } else {
 
-                        collection.insertMany([user], function (err, result) {
+                        collection.insertOne(user, function (err, result) {
+                            db.close();
                             if (err) {
                                 console.error(err);
                                 callback(err);
@@ -51,13 +55,13 @@ function insertUser(user, callback) {
                                 console.log(result);
                             }
                             callback(null, result);
-                            db.close();
                         });
                     }
                 });
             } else {
 
-                collection.insertMany([user], function (err, result) {
+                collection.insertOne(user, function (err, result) {
+                    db.close();
                     if (err) {
                         console.error(err);
                         callback(err);
@@ -65,7 +69,6 @@ function insertUser(user, callback) {
                         console.log(result);
                     }
                     callback(null, result);
-                    db.close();
                 });
             }
 
@@ -77,7 +80,36 @@ function insertUser(user, callback) {
 
 }
 
+function findUser(name, callback) {
+
+    console.log('name : ', name);
+
+    connection(function (err, db) {
+        if (!err) {
+
+            var collection = db.collection('users');
+
+            if (!collection) {
+                var error = new Error('users collection is empty');
+                db.close();
+                callback(error);
+            } else {
+                collection.findOne({name: name}, function (err, result) {
+                    db.close();
+                    if (err) {
+                        callback(err);
+                    } else {
+                        callback(null, result);
+                    }
+
+                });
+            }
+        }
+    });
+}
+
 module.exports = {
     connection: connection,
-    insertUser: insertUser
+    insertUser: insertUser,
+    findUser: findUser
 };
