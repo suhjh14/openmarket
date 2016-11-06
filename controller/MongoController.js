@@ -6,6 +6,7 @@ var MongoClient = require('mongodb').MongoClient;
 
 var url = 'mongodb://wearhouse-mongo:qZbfqhf0F51WwX35Z9pJvVOxwppUfmz3QKX0KEiJ2XyT0y9Ol4rzXEHs1IucckiNUCUR6ESpW6jptGeVh2eGHg==@wearhouse-mongo.documents.azure.com:10250/?ssl=true';
 
+url = 'mongodb://localhost:27017/test';
 
 function connection(callback) {
 
@@ -27,6 +28,8 @@ function connection(callback) {
 
 function insertUser(user, callback) {
 
+    console.log('user : ', user);
+
     connection(function (err, db) {
         if (!err) {
 
@@ -41,7 +44,7 @@ function insertUser(user, callback) {
                         callback(err);
                     } else {
 
-                        collection.insert([user], function (err, result) {
+                        collection.insertMany([user], function (err, result) {
                             if (err) {
                                 console.error(err);
                                 callback(err);
@@ -55,7 +58,7 @@ function insertUser(user, callback) {
                 });
             } else {
 
-                collection.insert([user], function (err, result) {
+                collection.insertMany([user], function (err, result) {
                     if (err) {
                         console.error(err);
                         callback(err);

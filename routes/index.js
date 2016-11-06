@@ -15,7 +15,9 @@ router.get('/', function (req, res, next) {
         card: 'KB'
     };
 
-    var user = new User(tmp).create();
+    var user = new User(tmp);
+
+    user.info();
 
     MongoController.insertUser(user, function (err, result) {
 

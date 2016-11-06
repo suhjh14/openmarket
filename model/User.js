@@ -7,7 +7,7 @@ function User(obj) {
     this.card = obj.card;
 }
 
-User.prototype.create = function create() {
+User.prototype.info = function info() {
     console.log(this.name);
     console.log(this.age);
     console.log(this.card);
