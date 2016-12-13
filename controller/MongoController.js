@@ -113,8 +113,35 @@ function findUser(name, callback) {
     });
 }
 
+function findUserByEmailAndPass(email, password, callback) {
+
+    connection(function (err, db) {
+        if (!err) {
+
+            var collection = db.collection('users');
+
+            if (!collection) {
+                var error = new Error('users collection is empty');
+                db.close();
+                callback(error);
+            } else {
+                collection.findOne({email: email, password: password}, function (err, result) {
+                    db.close();
+                    if (err) {
+                        callback(err);
+                    } else {
+                        callback(null, result);
+                    }
+
+                });
+            }
+        }
+    });
+}
+
 module.exports = {
     connection: connection,
     insertUser: insertUser,
-    findUser: findUser
+    findUser: findUser,
+    findUserByEmailAndPass: findUserByEmailAndPass
 };
