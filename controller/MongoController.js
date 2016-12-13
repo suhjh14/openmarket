@@ -139,9 +139,24 @@ function findUserByEmailAndPass(email, password, callback) {
     });
 }
 
+function findAllUser() {
+
+}
+
+function findAllPurchase() {
+
+}
+
+function findEncryptData() {
+
+}
+
 module.exports = {
     connection: connection,
     insertUser: insertUser,
     findUser: findUser,
-    findUserByEmailAndPass: findUserByEmailAndPass
+    findUserByEmailAndPass: findUserByEmailAndPass,
+    findAllUser: findAllUser,
+    findAllPurchase: findAllPurchase,
+    findEncryptData: findEncryptData
 };
