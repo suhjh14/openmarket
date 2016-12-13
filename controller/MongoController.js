@@ -4,8 +4,13 @@
 
 var MongoClient = require('mongodb').MongoClient;
 
-var url = 'mongodb://wearhouse-mongo:qZbfqhf0F51WwX35Z9pJvVOxwppUfmz3QKX0KEiJ2XyT0y9Ol4rzXEHs1IucckiNUCUR6ESpW6jptGeVh2eGHg==@wearhouse-mongo.documents.azure.com:10250/?ssl=true';
+var userName = 'ubuntu';
+var password = 'openMarket123!';
+var host = '52.187.37.208';
+var port = '27017';
+var dbName = 'openmarket';
 
+var url = 'mongodb://'+host+':'+port+'/'+dbName;
 
 function connection(callback) {
 
