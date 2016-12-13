@@ -6,6 +6,43 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <form action="/login" accept-charset="UTF-8" method="post">
+      <h3> LOGIN </h3>
+      <br/>
+      <div>
+        <label>Email:</label>
+        <input type="text" name="email" />
+        <br/>
+      </div>
+      <div>
+        <label>Password:</label>
+        <input type="password" name="password" />
+      </div>
+      <div>
+        <input type="submit" value="로그인" />
+      </div>
+    </form>
+
+    <form action="/signup" accept-charset="UTF-8" method="post">
+      <h3> SIGNUP </h3>
+      <br/>
+      <div>
+        <label>Email:</label>
+        <input type="text" name="email" />
+        <br/>
+      </div>
+      <div>
+        <label>Name:</label>
+        <input type="text" name="name" />
+        <br/>
+      </div>
+      <div>
+        <label>Password:</label>
+        <input type="password" name="password" />
+      </div>
+      <div>
+        <input type="submit" value="가입" />
+      </div>
+    </form>
   </body>
 </html>
