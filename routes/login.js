@@ -10,7 +10,7 @@ var MongoController = require('./../controller/MongoController');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    res.render('login', {title: 'LogIn'});
+    res.render('login', {title: '로그인 페이지'});
 });
 
 
@@ -18,7 +18,7 @@ router.post('/signup', function (req, res, next) {
 
     var email = req.body.email;
     var name = req.body.name;
-    var password = getSecurityPassword(email, req.body.password);
+    var password = getEncryptPassword(email, req.body.password);
 
     var user = {
         name: name,
@@ -42,7 +42,7 @@ router.post('/signup', function (req, res, next) {
 router.post('/login', function (req, res, next) {
 
     var email = req.body.email;
-    var password = getSecurityPassword(email, req.body.password);
+    var password = getEncryptPassword(email, req.body.password);
 
     MongoController.findUserByEmailAndPass(email, password, function (err, result) {
 
@@ -58,7 +58,7 @@ router.post('/login', function (req, res, next) {
 
 
 
-function getSecurityPassword(email, password) {
+function getEncryptPassword(email, password) {
     var hmac = crypto.createHmac('sha256', email + 'openMarket');
     var tmp = password + 'openMarket';
     return hmac.update(tmp).digest('hex');
