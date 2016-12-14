@@ -16,11 +16,10 @@ router.get('/', function (req, res, next) {
 });
 
 
-router.get('/:name', function(req, res) {
+router.get('/test', function(req, res) {
 
-    var name = req.params.name;
 
-    MongoController.findUser(name, function(err, result) {
+    MongoController.findAllUser(function(err, result) {
 
         res.send({result: err ? err : result});
 

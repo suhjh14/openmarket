@@ -39,11 +39,11 @@ function insertUser(user, callback) {
     connection(function (err, db) {
         if (!err) {
 
-            var collection = db.collection('users');
+            var collection = db.collection('user');
 
             if (!collection) {
 
-                db.createCollection('users', function (err, collection) {
+                db.createCollection('user', function (err, collection) {
 
                     if (err) {
                         db.close();
@@ -92,7 +92,7 @@ function findUser(name, callback) {
     connection(function (err, db) {
         if (!err) {
 
-            var collection = db.collection('users');
+            var collection = db.collection('user');
 
             if (!collection) {
                 var error = new Error('users collection is empty');
@@ -118,7 +118,7 @@ function findUserByEmailAndPass(email, password, callback) {
     connection(function (err, db) {
         if (!err) {
 
-            var collection = db.collection('users');
+            var collection = db.collection('user');
 
             if (!collection) {
                 var error = new Error('users collection is empty');
@@ -143,7 +143,7 @@ function findAllUser(callback) {
     connection(function (err, db) {
         if (!err) {
 
-            var collection = db.collection('users');
+            var collection = db.collection('user');
 
             if (!collection) {
                 var error = new Error('users collection is empty');
