@@ -9,7 +9,7 @@ var MongoClient = require('mongodb').MongoClient;
 
 var userName = 'ubuntu';
 var password = 'openMarket123!';
-var host = '52.187.37.208';
+var host = '127.0.0.1';
 var port = '27017';
 var dbName = 'openmarket';
 
