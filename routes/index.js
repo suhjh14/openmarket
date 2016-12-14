@@ -16,7 +16,7 @@ router.get('/', function (req, res, next) {
 });
 
 
-router.get('/user/:name', function(req, res) {
+router.get('/:name', function(req, res) {
 
     var name = req.params.name;
 
