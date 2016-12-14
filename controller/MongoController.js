@@ -139,8 +139,29 @@ function findUserByEmailAndPass(email, password, callback) {
     });
 }
 
-function findAllUser() {
+function findAllUser(callback) {
+    connection(function (err, db) {
+        if (!err) {
 
+            var collection = db.collection('users');
+
+            if (!collection) {
+                var error = new Error('users collection is empty');
+                db.close();
+                callback(error);
+            } else {
+                collection.find({},{_id:0}).toArray(function (err, result) {
+                    db.close();
+                    if (err) {
+                        callback(err);
+                    } else {
+                        callback(null, result);
+                    }
+
+                });
+            }
+        }
+    });
 }
 
 function findAllPurchase() {
