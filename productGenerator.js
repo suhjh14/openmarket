@@ -17,6 +17,8 @@ var url = 'mongodb://'+host+':'+port+'/'+dbName;
 
 //var url = 'mongodb://'+userName+':'+password+'@'+host+':'+port+'/'+dbName;
 
+url = 'mongodb://mongomongo:sgKl77UrrsF8K6thfOXHQr5m0mpfen8QQUUa8q4HRA5iKH7G2rkAuksjKKWX1BnHsRzAYo2LlefAHWdyZe1K4A==@mongomongo.documents.azure.com:10250/?ssl=true';
+
 
 function productGenerator(callback){
 
